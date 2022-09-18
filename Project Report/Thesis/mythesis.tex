@@ -1,0 +1,121 @@
+\documentclass[defaultstyle,11pt]{thesis}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}		% to get all AMS symbols
+\usepackage{graphicx}		% to insert figures
+\usepackage{hyperref}		% PDF hyperreferences??
+\usepackage{caption}
+\usepackage{subcaption}
+
+%%%%%%%%%%%%   All the preamble material:   %%%%%%%%%%%%
+
+\title{Machine Learning based Spectrum Sensing in Cognitive Radio Networks}
+
+\author{Raunaq Singh Jabbal}
+\rollnum{BCS 063}
+%\otherdegrees{B.A., North Dakota State University, 2005 \\
+%	      M.S., University of Reno, 2007}
+
+\degree{\textbf{Bachelor of Technology}\\ in}		%  #1 {long descr.}
+	{\textbf{CSE}}		%  #2 {short descr.}
+
+\dept{\textbf{CSE}}			%  #1 {designation}
+	{}	
+		%  #2 {name}
+%\vspace{0.7in}
+
+%\vspace{0.8in}
+
+\advisor{Dr.}				%  #1 {title}
+	{Binod Prasad}		%  #2 {name}
+	
+
+
+%\reader{Prof.~Rachel Goddard}		%  2nd person to sign thesis
+%\readerThree{Ms.~Thora Nea}		%  3rd person to sign thesis
+
+
+\abstract{
+The number of wireless communication devices has grown exponentially, and with the advent of 5G, demand for spectrum bands is increasing. We use Cognitive Radio to bridge the gap between supply and demand. Spectrum Sharing is a concept where other devices can access the spectrum band belonging to licensed users who are not using it. Cognitive Radio is a wireless communication mechanism to intelligently detect which channels are in use and reuse the channel where the PU is not transmitting. Spectrum Sensing is the critical part of Cognitive Radio, where we sense the spectrum band periodically, which allows us to sense holes in the spectrum. Secondary Users (SU) sense the spectrum for the presence of Primary Users (PU). They can use various algorithms to determine the presence or absence of primary users and can use that spectrum band when the licensed user is not transmitting. There are various factors on which the decision depends, the number of SUs, the number of PUs, the distance between SUs and PUs, noise levels, SNR values, type of fading used, sensing time, and type of technique used to determine the outcome.
+Techniques include Non-cooperative Spectrum Sensing, where individual SUs determine independently, and cooperative spectrum sensing (CSS), where all SUs collectively decide if the PU is active or not, because at one moment, a particular SU may report incorrectly. Under cooperative sensing, various conventional techniques like AND-based, OR-based, and Maximum Ratio Combining (MRC) based. 
+
+Machine Learning is a field of study based on building models and methods that “learn,” which use existing data to come up with a solution and increase their performance to predict outcomes or decisions accurately. Machine learning is closely related to Artificial Intelligence and Data Science. Deep Learniing is a subset of Machine Learning which tries to mimic the human brain to make decisions based on given data, and this approach gives them some advantages over Machine Learning. 
+
+This paper summarizes effects of parameters like the distance between PU and SUs, number of SUs, sensing time, fading scenarios, multiple cooperative spectrum sensing algorithms, classical and Machine Learning techniques, and Non-cooperative Spectrum Sensing algorithms.
+
+	}
+
+
+\declaration[Candidate's Declaration]{I hereby certify that I have properly checked and verified all the items as prescribed
+in the check-list and ensure that my thesis is in the proper format as specified in the
+guidelines for thesis preparation. \\ I declare that the work containing in this report is my own work. I understand that
+plagiarism is defined as any one or combination of the following: \begin{enumerate}
+	\item To steal and pass off (the ideas or words of another) as one's own
+	\item To use (another's production) without crediting the source
+	\item To commit literary theft
+	\item To present as new and original idea or product derived from an existing source.
+\end{enumerate}
+I understand that plagiarism involves an intentional act by the plagiarist of using someone else's work/ideas completely/partially and claiming authorship/originality of the work/ideas. Verbatim copy as well as close resemblance to some else's work constitute plagiarism. \\  I have given due credit to the original authors/sources for all the words, ideas, diagrams,
+graphics, computer programmes, experiments, results, websites, that are not my original contribution. I have used quotation marks to identify verbatim sentences and given
+credit to the original authors/sources. \\ I affirm that no portion of my work is plagiarized, and the experiments and results
+reported in the report/dissertation/thesis are not manipulated. In the event of a complaint of plagiarism and the manipulation of the experiments and results, I shall be fully
+responsible and answerable. My faculty supervisor(s) will not be responsible for the
+same. \\\\
+Signature: \\ \\
+Name: \\ \\
+Roll. No: \\ \\
+Date: 
+
+
+}
+
+\dedication[Dedication]{	% NEVER use \OnePageChapter here.
+	I am dedicating this project to my family and my friends. My parents and my brother, whose words of encouragement ring in my ears. Their love  for me knows no bounds. I will alwyas appreciate all they have done like developing my skills, teaching me the value of hard work, always providing constructive criticism, and for being a constant source of support and guidance. Also, I dedicate this thesis to all friends who always constantly aided me whenever I required help. 
+	}
+
+\acknowledgements{	\OnePageChapter	% *MUST* BE ONLY ONE PAGE!
+I would like to express my special thanks of gratitude to my mentor Dr. Binod Prasad  for giving me this opputunity to do this wonderful Summer Project on the topic Machine Learning based Spectrum Sensing in Cognitive Radio Networks. It was a great honor and privilege to study and learn under his guidance. 
+
+I am extremely grateful to my parents and my brother for their sacrificies, love and for mentally preparing and supporting me throughout this project. They have always been a source of inspiration and their assistance has gone a long way for me and the completion of this project.
+
+My completion of this project could not have been accomplished without the support of my friends and classsmates, this project is a success because of their endless help and support.
+
+	}
+
+% \IRBprotocol{E927F29.001X}	% optional!
+
+\ToCisShort	% use this only for 1-page Table of Contents
+
+\LoFisShort	% use this only for 1-page Table of Figures
+% \emptyLoF	% use this if there is no List of Figures
+
+\LoTisShort	% use this only for 1-page Table of Tables
+% \emptyLoT	% use this if there is no List of Tables
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%       BEGIN DOCUMENT...         %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input macros.tex
+\input chapter1.tex
+\input chapter2.tex
+\input chapter3.tex
+\input chapter4.tex
+\input chapter5.tex
+
+
+%%%%%%%%%   then the Bibliography, if any   %%%%%%%%%
+\bibliographystyle{siam}	% or "siam", or "alpha", etc.
+\nocite{*}		% list all refs in database, cited or not
+\bibliography{refs}		% Bib database in "refs.bib"
+
+%%%%%%%%%   then the Appendices, if any   %%%%%%%%%
+% \appendix
+% \input appendixA.tex
+
+
+\end{document}
+

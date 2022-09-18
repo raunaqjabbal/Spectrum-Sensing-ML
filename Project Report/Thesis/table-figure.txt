@@ -1,0 +1,35 @@
+Below is the Latex code for including a figure.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=.50\textwidth]{figname.pdf}
+  \end{center}
+  \caption{Figure caption}
+\end{figure}
+
+Below is the latex code for including a table.
+
+\begin{table}
+\centering
+\caption{Table caption}
+    \begin{tabular}{|P{1.2 cm}|P{2.6 cm}|P{1.7 cm}|}
+    \hline
+    {\bf Column1} & {\bf Column 2} & {\bf Column 3} 
+    \\ \hline
+    1 & 2,4,6,7 & 4 \\ \hline
+  	2 & 1,3,5,4,8 & 5  \\ \hline
+  	3 & 2,4,5 & 3 \\ \hline
+  	4 & 1,2,3,6,8,9,15 & 7  \\ \hline
+  	5 & 2,3 & 2 \\ \hline
+  	6 & 1,4,7 & 3 \\ \hline
+  	7 & 1,6,14,12 & 4 \\ \hline
+  	8 & 2,4,9,11 & 4 \\ \hline
+  	9 & 4,8,11 & 3  \\ \hline
+  	10 & 11,12,13 & 3 \\ \hline
+  	11 & 8,9,10,14,15 & 5  \\ \hline
+  	12 & 7,10 & 2 \\ \hline
+  	13 & 10,15 & 2 \\ \hline
+  	14 & 11,15 & 2 \\ \hline
+  	15 & 11,13,14 & 3 \\ \hline
+    \end{tabular}
+\end{table} 

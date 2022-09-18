@@ -1,0 +1,189 @@
+
+\chapter{Methodology}
+
+
+\section{Preamble}
+This chapter provides information on how the training and testing dataset is generated. This chapter also gives description of the various algorithms and fading scenarios that have been used for various experiments. 
+
+\section{Proposed hypothesis/Data Generation/Experiment Description}
+
+We consider the PU to be actively transmitting 50\% of the time on average ($P(H_1)=0.5)$). We consider a Cognitive Radio Network with 1 PU and N SUs, distributed evenly at a distance of 500m to 1000m. Each SU senses for time period $\tau$ which we can vary and sensing bandwidth $w=5MHz$. Each SU senses $K=2\tau w$ samples. Training Dataset can be changed, testing dataset is set at 50000 samples. Noise is a gaussian random variable considered to have zero mean and variance equal to the noise power. Signal is a gaussian random variable considered to have 0 mean and variance equal to the signal power. Signal Channel coefficient can be from Rayleigh Fading, Rician Fading, Nakagami Fading with the desired variance, or be absent, and is multiplied by path loss component.
+
+\begin{equation}
+h= g \times d^{\frac {-a}{2}}
+\end{equation}
+
+(Eq. 3.1) [21] where $g$ is the fading component of that SU, $d$ is the distance between the SU and the PU, and $a=4$ (path loss exponent)
+
+After collecting K samples, the estimated normalised energy [21] of an SU is:
+
+
+\begin{equation}
+  y = \sum_{k=1}^{K} z(k)^2
+  \end{equation}
+
+
+
+
+
+\section{Mechanism/Algorithm}
+
+\textbf{Non-cooperative Spectrum Sensing Technique}
+
+Non-cooperative Spectrum Sensing is Spectrum Sensing, where each SU independently decides if the PU is actively using the spectrum. It is an inefficient method as the changing environment can cause the SU to predict incorrectly. We select a threshold energy value, and if the sensed energy value is above this value, we consider that the PU is using the spectrum.
+
+We fix the false alarm probability ($P_{fa}$) [21] and get the below equation.
+\begin{equation}
+\lambda=\Gamma_{u}^{-1} (P_{fa},K/2  )
+\end{equation}
+
+(Eq. 3.3) Where K is the number of samples and $\Gamma_u (x,n)$ [21] is the upper incomplete Gamma function.
+\begin{equation}
+\Gamma_{u} (x,n)= \frac{1} {\Gamma(x)} \times \int_n^\infty t^{x-1} e^{-t} \ dx
+\end{equation}
+
+
+
+
+
+\textbf{Classical Cooperative Spectrum Sensing Techniques}
+
+These algorithms involve more than 1 SU, and hence generally perform better because prediction of multiple SUs are being considered. These algorithms should be considered an add-on to the Non-cooperative Spectrum Sensing technique because the computation is almost identical. Only a function is added that decides the rule that has to be applied to individual SU outputs to give the final decision. 
+
+\begin{itemize}	
+\item \textbf{AND Rule:}
+
+The final decision is only the logical AND operation [5] applied to all the SU outputs. When all SUs decide that the PU is transmitting, the final output is that the PU is transmitting. $s_{i}$ is the outcome of the $i_{th}$ SU, where the total number of SUs is N. Fig (3.5) $\wedge$ is the logical AND operator.
+
+ \begin{equation}
+    v =
+    \begin{cases*}
+      1  & if $(s_1 \wedge s_2 \wedge ... s_N = 1 )$ \\
+      0        & otherwise
+    \end{cases*}
+  \end{equation}
+
+\item \textbf{OR Rule:}
+
+The final decision is only the logical OR operation [5] applied to all the SU outputs. When at least one SU decides that the PU is transmitting, only then the final output is that the PU is transmitting. Fig (3.6) $\vee$ is the logical OR operator.
+
+ \begin{equation}
+    v =
+    \begin{cases*}
+      1  & if $(s_1 \vee s_2 \vee ... s_N = 1 )$ \\
+      0        & otherwise
+    \end{cases*}
+  \end{equation}
+
+\item \textbf{Maximum Ratio Combining (MRC):}
+
+MRC technique [5] multiplies the normalized average SNR value of the SU by the energy value sensed by the SU, so the SUs with the high SNR values have higher influence over the decision. Fig (3.7) This technique increases complexity, and we should know the SNR and energy level correctly.
+
+ \begin{equation}
+    v =
+    \begin{cases*}
+      1  & if $(\sum_{i=1}^{N} w_i y_i   \geq \lambda)$ \\
+      0        & otherwise
+    \end{cases*}
+  \end{equation}
+
+Where 
+
+ \begin{equation}
+    w_i= \frac  {SNR_i}   {\sum_{j}^{N} SNR_j}
+  \end{equation}
+
+\end{itemize}
+
+
+
+
+\textbf{Machine Learning}
+
+Machine Learning is a field of Computer Science that allows computers the ability to learn without being explicitly programmed. In traditional programming. We feed in data and logic to get the output. In Machine Learning, we feed in data and output, and the machine learns about the problem and comes up with its logic. Machine Learning has countless applications like spam detectors, web search engines, online ads, computer vision, self-driving cars, robotics, and voice assistants. Machine Learning can be of 3 types, Unsupervised Learning, Supervised Learning, and Reinforcement Learning. 
+
+
+\begin{itemize}
+\item In Supervised Learning, the algorithm learns how to map the labeled data to the labels. We know exactly how many labels or the range of labels we have, and it has lots of real-world applications. These algorithms are not suitable for complex tasks, and we cannot predict accurately if the test data has some variation compared to the training data.
+
+\item Unsupervised Learning does not use a labeled dataset. It has three broad applications: Clustering, Dimensionality Reduction, and Association. Clustering is a technique where we label groups of unlabelled data into labels of our own choice. Dimensionality Reduction is a pre-processing stage that aims to simplify the number of features in data when the number of features is too much, making it easier to visualize datasets while preserving the information of the data as much as possible. Association is a method for finding relationships between variables in a dataset that has its applications in marketing where the algorithm understands patterns of customers and suggests other products or offers.
+
+\item In Reinforcement Learning, the algorithm is rewarded for doing a desirable behavior and punished for doing an undesirable behavior, and the algorithm learns through trial and error. The algorithm looks for the maximum overall reward to decide correctly.
+\end{itemize}
+
+Deep Learning is a subset of Machine Learning, which tries to mimic the behavior of the brain that allows it to learn data. Deep Learning eliminates some of the pre-processing required and can work on unstructured data like images, text, and audio. Deep Learning understands the data's information, like faces in photos and phrases in a text.
+
+In this paper, we have used various Supervised Learning algorithms and an Artificial Neural Network, which are as follows:
+
+\begin{itemize}
+
+\item \textbf{Logistic Regression:}
+
+The Logistic Regression model (logit) estimates the probability of occurrence of an event, and outputs a value between 0 and 1, and if the value is greater than a threshold, then the outcome is Yes, otherwise No. Logit value for a variable x is:
+
+ \begin{equation}
+    logit(x)= \frac  {1}   {1+e^{-x}}
+  \end{equation}
+
+\item \textbf{Support Vector Machine:}
+
+The Support Vector Machine looks for the hyperplane that separates the two data classes and optimizes this margin. A large hyperplane means a clear distinction between the two classes, and the vectors that support this hyperplane are called the Support Vectors. It is not always possible to use a line or a plane to separate data, and this is dealt with by projecting the data to higher dimensions where a plane can separate classes. The separation boundary between the classes can be linear, polynomial, or sigmoid, depending upon the choice of kernel.
+
+
+\item \textbf{K Nearest Neighbours:}
+
+K Nearest Neighbours (K-NN) uses proximity to classify data into labels and can be used for classification or regression problems. Classification problem, the algorithm labels test data based on a majority vote, where the votes are the classes of the K nearest dataset records, where K is a parameter. 
+
+
+\item \textbf{Naive Bayes:}
+
+Naïve Bayes method uses the Bayes Theorem to predict the labels.  
+%The following relationship is used, given class variable y, and feature vectors $x_1$ to $x_n$
+
+% \begin{equation}
+%   P(y| x_1,...,x_n)= \frac {P(y) P(x_1,..., x_n |y)} {P(x_1,...,x_n)}
+%  \end{equation}
+
+% $P(y)$ = number of samples with label y / total number of samples \\
+% $P(x_1,..., x_n |y)$ term is constant given the input \\
+% $ P(x_1,..., x_n |y)$ can be estimated by Maximum A Posteriori Estimation
+
+\item \textbf{Random Forest:}
+
+Decision Trees build the model by breaking down the dataset into small subsets, representing them in the form of a tree data structure. A Decision Tree is a structure where each internal node represents a test on an attribute. Each leaf node holds a label, and each branch represents an outcome. The core algorithm uses Entropy to calculate Homogeneity and Information Gain to construct a Decision Tree. If the sample is homogenous, then the Entropy is 0, and if the sample is equally divided, it has an entropy value of 1. Information Gain is the decrease of Entropy after the data has been split and added to the tree, which the algorithm should maximize, i.e., the most homogenous branches are found.
+Random Forest Classification consists of many Decision Trees and is an ensemble learning algorithm. Each tree gives its prediction, and the class with the highest votes is the model's output.
+
+
+\item \textbf{CatBoost:}
+
+CatBoost is an open-source software library that provides a gradient boosting framework for Decision Trees. Catboost is popular because of features like native handling of categorical features, fast and scalable, visualization tools for analysis, supporting computation on both CPU and GPU, and is available for Python, R, Java, and C++. Catboost can be used for ranking, classification, and regression.
+
+
+\item \textbf{XGBoost:}
+
+XGBoost stands for Extreme Gradient boosting, is a scalable distributed gradient-boosted decision tree machine learning library, and works for ranking, classification, and regression, like CatBoost. XGBoost provides parallel tree boosting (GBDT). Weights play a crucial role and are assigned to all independent variables, which are then fed into the tree which predicts outcomes. Weights that are mispredicted are increased and fed to the second tree. Trees then ensemble to give an accurate and robust model.
+
+
+\item \textbf{ADABoost:}
+
+ADABoost, short for Adaptive Boosting, is a gradient boosting algorithm. A weak classifier trains on the training data based on weighed samples, where the weight represents how important the sample is to be correctly classified. Initially, all weights are equal. We create a weak classifier for each variable, and more weight is assigned to the incorrectly classified samples so that their importance increases and they are classified correctly. This process continues until each sample has been classified correctly or the algorithm has reached the maximum iteration level.
+
+
+\item \textbf{Multilayer Perceptron:}
+
+Multilayer Perceptron is a feed-forward neural network because the data flows in the forward direction and consists of only three layers, input layer, hidden layer, and output layer. The input layer receives the data, and the output layer gives the decision. The neurons in the layers learn and train with backpropagation. Backpropagation aims to minimize the cost function and increase accuracy by adjusting the weights and biases which is dependent on the gradients of the cost function with respect to those parameters. After each forward pass, a backward pass is done to adjust the weights. The gradient of the loss is calculated, and is distributed layer by layer backwards.
+
+In the forward phase (Fig. 3.10) [21], the output for a neuron j in a layer l with weights w, is 
+
+
+
+\begin{equation}
+  {o_j}^l =\sigma \left( \sum_{i}^{} {w_{ij}}^l  {o_i}^{l-1} \right)
+  \end{equation}
+
+Where ${o_i}^0=y_i$ and $\sigma(x)$ is the logit (sigmoid) function.
+
+\end{itemize}
+
+\section{Analytical validation}
+Results from papers [5,21] are validated for various parameters and algorithms affecting Spectrum Sensing performance in Cognitive Radio Networks.

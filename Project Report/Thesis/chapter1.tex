@@ -1,0 +1,71 @@
+\chapter {Introduction}
+\label{introchap}
+
+
+
+\section{Context}
+There has been an increase in wirelessly communicating devices because of the development of wireless technologies and protocols. This development has led to an increase in demand for radio spectrum. Cognitive Radio is a concept that allows SUs to use licensed spectrum belonging to Primary Users to overcome this demand increase. Spectrum Sensing is the part of Cognitive Radio where the Secondary Users listen to the spectrum band and use the sensing data to determine if the Primary User is transmitting. Spectrum Sensing is of two types, non-cooperative and cooperative. Non-cooperative Spectrum Sensing is where an SU independently decides if the PU is active. Cooperative Spectrum Sensing is where multiple SUs use an algorithm to decide if the PU is active. Cooperative Spectrum Sensing is more accurate than Non-cooperative Spectrum Sensing because that one SU may not sense appropriately because of the environment, so its decision may be incorrect. When multiple SUs work together, they can overcome this issue. Then we may use a variety of algorithms that may be good at spotting outliers, leading to an improvement in the decision. 
+In Non-cooperative spectrum sensing [5], the SU senses the energy it receives, and only if it is below a certain threshold does the SU conclude that the PU is not actively using the licensed spectrum band, and it can reuse that same band. Non-cooperative spectrum sensing is of two types, classical techniques, and Machine Learning techniques.
+
+Classical techniques [21] are based upon Cooperative Spectrum Sensing, where multiple SUs aid in deciding the final outcome, which consists of AND, OR, and Maximum Ratio Combining techniques. In AND technique, only when all SUs conclude that the PU is transmitting, the final decision is that the PU is transmitting and the SUs should not transmit. In the OR technique, even if one SU concludes that the PU is actively transmitting, the final decision is that the PU is transmitting. In Maximum Ratio Combining, sensed energy value of each SU of multiplied by the normalised average SNR value, and the summation of these new energy values is compared against the threshold value to give the final decision. This is done so that the energy value of SUs having high SNR values are given more importance, but this requires us to know the SNR value. 
+
+Machine Learning algorithms are handy in a wide range of fields. These algorithms can automatically understand and extract patterns from data and apply this understanding to new data. We can classify our problem into two types, classification and regression. Classification is where the output type is a discrete set of values, like a Yes/No decision. Regression is where the output type is a continuous set of values.
+
+Further, Machine Learning algorithms can be classified into Supervised Learning, Unsupervised Learning, and Reinforcement Learning. The dataset the algorithm receives is labeled with output values in Supervised Learning, and in Unsupervised Learning, there is no labeled dataset. In Reinforcement Learning, the algorithm is rewarded for doing a desirable behavior and punished for doing an undesirable behavior, and the algorithm learns through trial and error. Another crucial part of Machine Learning is Neural Networks, which try to mimic brain activity to come to a decision, are very flexible, and the algorithms can be applied to various problems.
+For Machine Learning approach, we do not use Non-cooperative Spectrum Sensing approach of choosing a threshold, like we do in Classical Algorithms. Instead, we pass the energy values of all SUs to the algorithms as dataset, and the algorithm works on those values to conclude if the PU is transmitting.
+
+Spectrum Sensing is a Classification problem because we need to conclude if the PU is actively transmitting or not, so the algorithm will only give out two values, 0 and 1, representing a Yes and No. We have chosen various Supervised Learning algorithms Logistic Regression, Linear Support Vector Machine, Gaussian Support Vector Machine, K Nearest Neighbours, Random Forest Classification, Naïve Bayes, Artificial Neural Networks, and Gradient Boosting Libraries like CatBoost, XGBoost, and ADABoost. 
+
+
+
+
+
+
+\section{Problem/Motivation}
+We require detailed results of the effect of various parameters on the Spectrum Sensing part of Cognitive Radio. Along with this, we need to know performance of Spectum Sensing under various fading scenarios and algorithms. 
+
+The goal of spectrum sensing is to decide between the two hypotheses [21]:
+ 
+\begin{equation}
+z(t)=
+\begin{cases*}
+      n(t) & $H_0$ (white space) \\
+      h × s(t)+ n(t)   & $H_1$ (occupied)
+    \end{cases*}
+\end{equation}
+
+Where z(t) is the signal sample received by the SU, s(t) is the transmitted signal of the primary user, n(t) is the Additive White Gaussian Noise (AWGN), and h is the complex gain of the channel.
+
+
+
+
+
+
+
+\section{Objectives}
+Spectrum Sensing is the most important part of Cognitive Radio where SUs listen, or sense the spectrum and based on the sensed data decide if the PU is using the spectrum band or not. This paper thoroughly reviews and considers various aspects like algorithms, sensing parameters, fading scenarios stated below
+\begin{itemize}
+
+\item Compare performance between:
+
+Non-cooperative Spectrum Sensing technique, Classical Cooperative Spectrum Sensing Techniques (AND, OR and MRC) and various Machine Learning Algorithms in Cooperative Spectrum Sensing. 
+
+\item To show the effect of Rayleigh Fading, Rician Fading, Nakagami Fading, and AWGN at Variance values 1 and 2 on Spectrum Sensing.
+
+\item Show effect of Sample Size or Sensing Time, SU numbers, Training Dataset Size for Machine Learning Algorithms on Spectrum Sensing.
+
+The main performance metric is the Receiver Operating Characteristic Curve (ROC Curve) and Area under the ROC Curve (AUC value).  The code enables us to plot performance of an algorithm under various fading scenarios, or performance of various algorithms under a fading scenario. 
+
+
+\end{itemize}
+
+
+
+\section{Thesis Outline}
+In chapter 2, details of Cognitive Radio and Spectrum Sensing has been provided, along with key related research, analysis of the Spectrum Sensing problem and Research gaps have been mentioned.
+In Chapter 3, details of how the training and testing data is generated has been provided. Brief information about the various Fading Scenarios and Sensing Technique has been mentioned.
+In Chapter 4, we discuss all the various experiments, their paramaters, and the results along with tables and figures, and the final conclusion.
+In Chapter 5, we mention the contributions of this thesis along with the limitations and the future scope in this field of study.
+
+
+
