@@ -1,1 +1,1 @@
-# Specturm-Sensing-ML
+# Spectrum-Sensing-ML
